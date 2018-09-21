@@ -6,56 +6,6 @@ var str = "Hello, playground"
 
 
 
-class BinaryTree<T:Comparable>
-{
-    var leftNode:BinaryTree?
-    var rightNode:BinaryTree?
-    var parentNode:BinaryTree?
-    var value:T
-    
-    init(_ value:T)
-    {
-        self.value = value
-    }
-}
-
-extension BinaryTree
-{
-    func insert(_ value:T)
-    {
-        if self.value > value
-        {
-            if let leftNode = self.leftNode
-            {
-                leftNode.insert(value)
-            } else
-            {
-                leftNode = BinaryTree(value)
-                leftNode?.parentNode = self
-            }
-        } else
-        {
-            if let rightNode = self.rightNode
-            {
-                rightNode.insert(value)
-            } else
-            {
-                rightNode = BinaryTree(value)
-                rightNode?.parentNode = self
-            }
-        }
-    }
-}
-
-extension BinaryTree
-{
-    func inorder()
-    {
-        leftNode?.inorder()
-        print(self.value)
-        rightNode?.inorder()
-    }
-}
 
 extension BinaryTree
 {
@@ -90,15 +40,14 @@ extension BinaryTree
 }
 
 
-let tree = BinaryTree<Int>(7)
-tree.insert(2)
-tree.insert(5)
-tree.insert(10)
-tree.insert(9)
+let tree = BinaryTree<Int>(2)
+tree.insert(1)
+tree.insert(3)
+tree.insert(0)
+tree.insert(7)
 tree.insert(9)
 tree.insert(1)
-let value = tree.search(10)
-tree.checkHeight()
+//let value = tree.search(10)
+//tree.checkHeight()
 
-tree.inorder()
-
+tree.levelOrder()
